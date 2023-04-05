@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: otus-health-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.org/server-snippets: |
+      location /admin {
+        deny all;
+        return 403 "Go your own way, Stalker!"
+      }
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - pathType: Prefix
+            path: /health
+            backend:
+              service:
+                name: otus-health
+                port:
+                  number: 8080

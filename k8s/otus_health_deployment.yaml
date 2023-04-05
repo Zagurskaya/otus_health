@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-health
+spec:
+  selector:
+    app: otus-health
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-health
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: otus-health
+  template:
+    metadata:
+      labels:
+        app: otus-health
+    spec:
+      containers:
+        - name: otus-health-dep
+          image: zagurskaya/health-image:2.0.0
+          ports:
+            - containerPort: 8000

@@ -1,9 +1,9 @@
 # HEALTH-PROJECT
 
-## Основы работы с Docker
+##  Базовые сущности Кubernetes: Pod, ReplicaSet, Deployment
 
-#### Endpoint /health:8000
+#### Endpoint curl http://arch.homework/health
 
 - docker pull zagurskaya/health-image:2.0.0
-- docker run -p 8000:8000 zagurskaya/health-image:2.0.0
+- kubectl apply -f k8s
 
